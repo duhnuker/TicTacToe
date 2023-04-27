@@ -16,6 +16,33 @@ const Gameboard = (() => {
     }
 })();
 
+//creating players
+const createPlayer = (name, mark) => {
+    return {
+        name,
+        mark
+    }
+}
+
+//running the actual game
+const Game = (() => {
+    let players = [];
+    let currentPlayerIndex;
+    let gameOver = false;
+
+    const start = () => {
+        players = [
+            createPlayer(document.querySelector("#player1").value, "X"),
+            createPlayer(document.querySelector("#player2").value, "O"),
+        ]
+        currentPlayerIndex = 0;
+        gameOver = false;
+        Gameboard.display();
+    }
+    return {
+        start,
+    }
+})();
 
 
 //start button to run game
