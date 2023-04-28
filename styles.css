@@ -6,7 +6,7 @@
     height: 500px;
 }
 
-#square {
+.square {
     display: flex;
     flex-wrap: wrap;
     float: left;
