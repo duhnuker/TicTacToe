@@ -21,9 +21,14 @@ const Gameboard = (() => {
         display();
     }
 
+    //recalls the gameboard to prevent players from selecting
+    //already filled divs
+    const getGameboard = () => gameboard;
+
     return {
         display,
         update,
+        getGameboard
     }
 })();
 
@@ -59,9 +64,13 @@ const Game = (() => {
     const handleclick = (event) => {
         //split integer value from index-
         let index = parseInt(event.target.id.split("-")[1]);
-        Gameboard.update(index, players[currentPlayerIndex].mark);
+        if (Gameboard.getGameboard() [index] !== "")
+        return;
 
+        Gameboard.update(index, players[currentPlayerIndex].mark);
+        //switches player
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
+
     }
     return {
         start,
