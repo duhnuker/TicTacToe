@@ -38,9 +38,19 @@ const Game = (() => {
         currentPlayerIndex = 0;
         gameOver = false;
         Gameboard.display();
+        const squares = document.querySelectorAll(".square");
+        squares.forEach((square) => {
+        square.addEventListener("click", Game.handleclick);
+        })
+    }
+
+    const handleclick = (event) => {
+        let index = parseInt(event.target.id.split("-")[1]);
+        alert(index);
     }
     return {
         start,
+        handleclick
     }
 })();
 
