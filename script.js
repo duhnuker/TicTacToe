@@ -68,6 +68,11 @@ const Game = (() => {
             return;
 
         Gameboard.update(index, players[currentPlayerIndex].mark);
+        
+        if (checkForWin(Gameboard.getGameboard(), players[currentPlayerIndex].mark)) {
+            gameOver = true;
+            alert(`${players[currentPlayerIndex].mark} won!`)
+        }
         //switches player
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     }
@@ -88,6 +93,25 @@ const Game = (() => {
     }
 })();
 
+function checkForWin(board) {
+    const winningCombinations = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9],
+        [1, 5, 9],
+        [3, 5, 7]
+    ]
+    for (let i = 0; i < winningCombinations.length; i++) {
+        const [a, b, c] = winningCombinations[i];
+        if (board [a] && board[a] === board[b] && board[a] === board[c]) {
+            return true;
+        }
+    }
+    return false;
+}
 
 //start button to run game
 const startButton = document.querySelector("#startBtn");
