@@ -74,10 +74,11 @@ const Game = (() => {
         
         if (checkForWin(Gameboard.getGameboard(), players[currentPlayerIndex].mark)) {
             gameOver = true;
-            alert(`${players[currentPlayerIndex].mark} won!`)
+            displayMessage.renderMessage(`${players[currentPlayerIndex].name} Wins!`)
         } else if (checkForTie(Gameboard.getGameboard())) {
             gameOver = true;
-            alert("Tie!")
+            displayMessage.renderMessage("Tie!")
+
         }
         //switches player
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
@@ -90,6 +91,8 @@ const Game = (() => {
         }
         //rerender the board
         Gameboard.display();
+        gameOver = false;
+        document.querySelector("#message").innerHTML = "";
     }
 
     return {
@@ -105,14 +108,14 @@ function checkForTie(board) {
 
 function checkForWin(board) {
     const winningCombinations = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
         [1, 4, 7],
         [2, 5, 8],
-        [3, 6, 9],
-        [1, 5, 9],
-        [3, 5, 7]
+        [0, 4, 8],
+        [2, 4, 6]
     ]
     for (let i = 0; i < winningCombinations.length; i++) {
         const [a, b, c] = winningCombinations[i];
@@ -122,6 +125,15 @@ function checkForWin(board) {
     }
     return false;
 }
+
+const displayMessage = (() => {
+    const renderMessage = (message) => {
+        document.querySelector("#messageContainer").innerHTML = message;
+    }
+    return {
+        renderMessage,
+    }
+})();
 
 //start button to run game
 const startButton = document.querySelector("#startBtn");
