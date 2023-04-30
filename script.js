@@ -62,6 +62,9 @@ const Game = (() => {
     }
         //
     const handleclick = (event) => {
+        if (gameOver) {
+            return;
+        }
         //split integer value from index-
         let index = parseInt(event.target.id.split("-")[1]);
         if (Gameboard.getGameboard() [index] !== "")
@@ -72,6 +75,9 @@ const Game = (() => {
         if (checkForWin(Gameboard.getGameboard(), players[currentPlayerIndex].mark)) {
             gameOver = true;
             alert(`${players[currentPlayerIndex].mark} won!`)
+        } else if (checkForTie(Gameboard.getGameboard())) {
+            gameOver = true;
+            alert("Tie!")
         }
         //switches player
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
@@ -92,6 +98,10 @@ const Game = (() => {
         handleclick
     }
 })();
+
+function checkForTie(board) {
+    return board.every(cell => cell !== "")
+}
 
 function checkForWin(board) {
     const winningCombinations = [
