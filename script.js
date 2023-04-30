@@ -65,22 +65,37 @@ const Game = (() => {
         //split integer value from index-
         let index = parseInt(event.target.id.split("-")[1]);
         if (Gameboard.getGameboard() [index] !== "")
-        return;
+            return;
 
         Gameboard.update(index, players[currentPlayerIndex].mark);
         //switches player
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
-
     }
+
+    const restart = () => {
+        //update all squares to be empty
+        for (let i = 0; i < 9; i++) {
+            Gameboard.update(i, "");
+        }
+        //rerender the board
+        Gameboard.display();
+    }
+
     return {
         start,
+        restart,
         handleclick
     }
 })();
 
 
 //start button to run game
-const startButton = document.querySelector('#startBtn');
-startButton.addEventListener('click', () => {
+const startButton = document.querySelector("#startBtn");
+startButton.addEventListener("click", () => {
     Game.start();
 })
+
+const restartButton = document.querySelector("#restartBtn");
+restartButton.addEventListener("click", () => {
+    Game.restart();
+} )
