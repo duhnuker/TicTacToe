@@ -92,7 +92,7 @@ const Game = (() => {
         //rerender the board
         Gameboard.display();
         gameOver = false;
-        document.querySelector("#message").innerHTML = "";
+        document.querySelector("#messageContainer").innerHTML = "";
     }
 
     return {
