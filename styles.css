@@ -1,16 +1,26 @@
 body {
     background-color: lightgrey;
+    width: 50vw;
+    margin-left: 25vw;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 #gameboard {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 500px;
+    height: 450px;
     align-items: center;
     box-shadow: 0px 1px 10px black;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .square {
@@ -59,8 +69,18 @@ button {
     background-color: rgb(145, 170, 106);
 }
 
+#startBtn:hover {
+    transition: 0.4s;
+    background-color: rgb(129, 151, 93);;
+}
+
 #restartBtn {
     background-color: rgb(194, 100, 100);
+}
+
+#restartBtn:hover {
+    transition: 0.4s;
+    background-color: rgb(175, 88, 88);
 }
 
 #messageContainer {
